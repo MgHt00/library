@@ -19,12 +19,18 @@ export class Generals {
     if (!path.startsWith('/')) { // ensuring the path starts with a / to avoid any relative path issues.
       path = '/' + path;
     }
+    console.info("path:", path);
+
     const currentURL = new URL(window.location.href);
-    // captures the path up to the last /, excluding the file name (if present) but including the subdirectory.
-    // const basePath = `${currentURL.origin}${currentURL.pathname.substring(0, currentURL.pathname.lastIndexOf('/'))}`; 
-    const originPath = currentURL.origin;
-    const absoluteURL = new URL(path, originPath);
-    console.info("Path:", path, "originPath:", originPath, "Absolute URL:", absoluteURL.href);
+    const urlOrigin = currentURL.origin;
+    const urlPathName = currentURL.pathname;
+
+    const baseURL = `${urlOrigin}${urlPathName}`;
+    console.info("baseURL:", baseURL);
+
+    const absoluteURL = new URL(path, baseURL);
+    console.info("absoluteURL.href:", absoluteURL.href);
+
     console.groupEnd();
     return absoluteURL.href;
   }
