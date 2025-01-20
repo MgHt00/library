@@ -16,10 +16,9 @@ export class Generals {
   // Construct an absolute URL from a relative path
   constructAbsoluteURL(path) {
     console.groupCollapsed("constructAbsoluteURL()");
-    /*if (!path.startsWith('/')) { // ensuring the path starts with a / to avoid any relative path issues.
-      path = '/' + path;
-    }*/
+    
     // Check if path starts with '/'. Remove it to prevent absolute path behavior
+    // When the path is an absolute path (starting with /), it overrides the baseURL
       if (path.startsWith('/')) {
         path = path.substring(1);
     }
@@ -29,10 +28,8 @@ export class Generals {
     const urlOrigin = currentURL.origin;
     const urlPathName = currentURL.pathname;
 
-    //const baseURL = `${urlOrigin}${urlPathName}`;
-    // Adjust the baseURL to include the full subdirectory, if any
-    const baseURL = `${urlOrigin}${urlPathName.substring(0, urlPathName.lastIndexOf('/') + 1)}`;
-    console.info("baseURL 12-24:", baseURL);
+    const baseURL = `${urlOrigin}${urlPathName}`;
+    console.info("baseURL:", baseURL);
 
     const absoluteURL = new URL(path, baseURL);
     console.info("absoluteURL.href:", absoluteURL.href);
