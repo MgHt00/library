@@ -11,12 +11,16 @@ function contentManager(global, listenerMgr, controlMgr) {
   let currentQuestionIndex; // Index to match the question and the answers.
 
   const answerClassList = ["ans-a", "ans-b", "ans-c", "ans-d"];
+  
+  console.groupCollapsed("Building image buttons.");
   const alphabetImg = [
     global.constructAbsoluteURL("assets/images/a.png"), 
     global.constructAbsoluteURL("assets/images/b.png"), 
     global.constructAbsoluteURL("assets/images/c.png"), 
     global.constructAbsoluteURL("assets/images/d.png")
   ];
+  console.groupEnd();
+
   const alphabetAlt = ["a", "b", "c", "d"];
 
   async function start() {
