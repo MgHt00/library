@@ -28,7 +28,7 @@ export class Generals {
     //const baseURL = `${urlOrigin}${urlPathName}`;
     // Adjust the baseURL to include the full subdirectory, if any
     const baseURL = `${urlOrigin}${urlPathName.substring(0, urlPathName.lastIndexOf('/') + 1)}`;
-    console.info("baseURL:", baseURL);
+    console.info("baseURL: 12-18", baseURL);
 
     const absoluteURL = new URL(path, baseURL);
     console.info("absoluteURL.href:", absoluteURL.href);
