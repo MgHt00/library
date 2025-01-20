@@ -16,8 +16,12 @@ export class Generals {
   // Construct an absolute URL from a relative path
   constructAbsoluteURL(path) {
     console.groupCollapsed("constructAbsoluteURL()");
-    if (!path.startsWith('/')) { // ensuring the path starts with a / to avoid any relative path issues.
+    /*if (!path.startsWith('/')) { // ensuring the path starts with a / to avoid any relative path issues.
       path = '/' + path;
+    }*/
+    // Check if path starts with '/'. Remove it to prevent absolute path behavior
+      if (path.startsWith('/')) {
+        path = path.substring(1);
     }
     console.info("path:", path);
 
@@ -28,7 +32,7 @@ export class Generals {
     //const baseURL = `${urlOrigin}${urlPathName}`;
     // Adjust the baseURL to include the full subdirectory, if any
     const baseURL = `${urlOrigin}${urlPathName.substring(0, urlPathName.lastIndexOf('/') + 1)}`;
-    console.info("baseURL: 12-18", baseURL);
+    console.info("baseURL 12-24:", baseURL);
 
     const absoluteURL = new URL(path, baseURL);
     console.info("absoluteURL.href:", absoluteURL.href);
