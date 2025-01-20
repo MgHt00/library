@@ -11,7 +11,12 @@ function contentManager(global, listenerMgr, controlMgr) {
   let currentQuestionIndex; // Index to match the question and the answers.
 
   const answerClassList = ["ans-a", "ans-b", "ans-c", "ans-d"];
-  const alphabetImg = ["../../../assets/images/a.png", "../../../assets/images/b.png", "../../../assets/images/c.png", "../../../assets/images/d.png"];
+  const alphabetImg = [
+    global.constructAbsoluteURL("assets/images/a.png"), 
+    global.constructAbsoluteURL("assets/images/b.png"), 
+    global.constructAbsoluteURL("assets/images/c.png"), 
+    global.constructAbsoluteURL("assets/images/d.png")
+  ];
   const alphabetAlt = ["a", "b", "c", "d"];
 
   async function start() {
@@ -23,7 +28,8 @@ function contentManager(global, listenerMgr, controlMgr) {
   async function loadJSON() {
     console.groupCollapsed("loadJSON()");
     try {
-      const response = await fetch('../../../assets/data/questions.json'); // Fetch data using await
+      const jsonURL = global.constructAbsoluteURL("assets/data/questions.json");
+      const response = await fetch(jsonURL); // Fetch data using await
       const data = await response.json(); // Convert to JSON using await
       questions = data; // Assign the fetched data to questions
       shuffledQuestionsArray = [...questions]; // Copy to shuffledQuestionsArray
