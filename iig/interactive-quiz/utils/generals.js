@@ -23,7 +23,7 @@ export class Generals {
     // captures the path up to the last /, excluding the file name (if present) but including the subdirectory.
     const basePath = `${currentURL.origin}${currentURL.pathname.substring(0, currentURL.pathname.lastIndexOf('/'))}`; 
     const absoluteURL = new URL(path, basePath);
-    console.info("Path:", path, "Absolute URL:", absoluteURL.href);
+    console.info("Path:", path, "basePath:", basePath, "Absolute URL:", absoluteURL.href);
     console.groupEnd();
     return absoluteURL.href;
   }
